@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 import { injectIntl, FormattedMessage } from 'react-intl';
-import { getShowEditPost } from '../../../App/AppReducer';
 
 // Import Style
 import styles from '../../components/PostListItem/PostListItem.css';
 
 // Import Actions
-import { fetchPost } from '../../PostActions';
+import { fetchPost, editPostRequest } from '../../PostActions';
 import { toggleEditPost } from '../../../App/AppActions';
+import { getShowEditPost } from '../../../App/AppReducer';
 
 // Import Selectors
 import { getPost } from '../../PostReducer';
@@ -23,7 +23,7 @@ export class PostDetailPage extends React.Component {
       name: this.props.post.name,
       title: this.props.post.title,
       content: this.props.post.content,
-    }; 
+    };
   }
 
   handleInputChange = (event) => {
@@ -83,17 +83,17 @@ PostDetailPage.need = [params => {
 }];
 
 // Retrieve data from store as props
-function mapStateToProps(state, props) {
-  return {
-    post: getPost(state, props.params.cuid),
-    showEditPost: getShowEditPost(state),
-  };
-}
-
 function mapDispatchToProps(dispatch, props) {
   return {
     toggleEditPost: () => dispatch(toggleEditPost()),
     editPostRequest: (post) => dispatch(editPostRequest(props.params.cuid, post)),
+  };
+}
+
+function mapStateToProps(state, props) {
+  return {
+    post: getPost(state, props.params.cuid),
+    showEditPost: getShowEditPost(state),
   };
 }
 
