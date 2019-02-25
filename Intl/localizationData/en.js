@@ -7,7 +7,7 @@ export default {
     twitterMessage: 'We are on Twitter',
     by: 'By',
     deletePost: 'Delete Post',
-    votes: 'Liked:',
+    votes: 'Like:',
     createNewPost: 'Create new post',
     editPost: 'Edit Post',
     authorName: 'Author\'s Name',
